@@ -107,132 +107,132 @@ form[i].focus();
 if (completo) { document.dois.submit(); } else {  document.dois.submit();alert("Preencha todos os campos!"); }
 }
 
-function nomeOk() {
-  if (document.getElementById("nomeCliente").value != "" && document.getElementById("sobrenomeCliente").value != "") {
-    document.getElementById("documento").disabled=false;
-    document.getElementById("s_documento").disabled=false;
-  } else {
-    document.getElementById("bandeiraCartao").disabled=true;
-    document.getElementById("numeroCartao").disabled=true;
-    document.getElementById("nomeTitularCartao").disabled=true;
-    document.getElementById("dtValidadeCartao").disabled=true;
-    document.getElementById("codSegurancaCartao").disabled=true;
-    document.getElementById("documento").disabled=true;
-    document.getElementById("s_documento").disabled=true;
-    document.getElementById("celularCliente").disabled=true;
-    document.getElementById("ddicelularCliente").disabled=true;
-    document.getElementById("dddcelularCliente").disabled=true;
-    document.getElementById("emailCliente").disabled=true;
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function nomeOk() {
+//   if (document.getElementById("nomeCliente").value != "" && document.getElementById("sobrenomeCliente").value != "") {
+//     document.getElementById("documento").disabled=false;
+//     document.getElementById("s_documento").disabled=false;
+//   } else {
+//     document.getElementById("bandeiraCartao").disabled=true;
+//     document.getElementById("numeroCartao").disabled=true;
+//     document.getElementById("nomeTitularCartao").disabled=true;
+//     document.getElementById("dtValidadeCartao").disabled=true;
+//     document.getElementById("codSegurancaCartao").disabled=true;
+//     document.getElementById("documento").disabled=true;
+//     document.getElementById("s_documento").disabled=true;
+//     document.getElementById("celularCliente").disabled=true;
+//     document.getElementById("ddicelularCliente").disabled=true;
+//     document.getElementById("dddcelularCliente").disabled=true;
+//     document.getElementById("emailCliente").disabled=true;
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function documentoOk() {
-  if (document.getElementById("documento").value != "" && document.getElementById("documento").value.length > 5) {
-    document.getElementById("celularCliente").disabled=false;
-    document.getElementById("ddicelularCliente").disabled=false;
-    document.getElementById("dddcelularCliente").disabled=false;
-  } else {
-    document.getElementById("bandeiraCartao").disabled=true;
-    document.getElementById("numeroCartao").disabled=true;
-    document.getElementById("nomeTitularCartao").disabled=true;
-    document.getElementById("dtValidadeCartao").disabled=true;
-    document.getElementById("codSegurancaCartao").disabled=true;
-    document.getElementById("celularCliente").disabled=true;
-    document.getElementById("ddicelularCliente").disabled=true;
-    document.getElementById("dddcelularCliente").disabled=true;
-    document.getElementById("emailCliente").disabled=true;
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function documentoOk() {
+//   if (document.getElementById("documento").value != "" && document.getElementById("documento").value.length > 5) {
+//     document.getElementById("celularCliente").disabled=false;
+//     document.getElementById("ddicelularCliente").disabled=false;
+//     document.getElementById("dddcelularCliente").disabled=false;
+//   } else {
+//     document.getElementById("bandeiraCartao").disabled=true;
+//     document.getElementById("numeroCartao").disabled=true;
+//     document.getElementById("nomeTitularCartao").disabled=true;
+//     document.getElementById("dtValidadeCartao").disabled=true;
+//     document.getElementById("codSegurancaCartao").disabled=true;
+//     document.getElementById("celularCliente").disabled=true;
+//     document.getElementById("ddicelularCliente").disabled=true;
+//     document.getElementById("dddcelularCliente").disabled=true;
+//     document.getElementById("emailCliente").disabled=true;
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function celularOk() {
-  if (document.getElementById("ddicelularCliente").value != "" && document.getElementById("dddcelularCliente").value != "" && document.getElementById("celularCliente").value != "" && document.getElementById("celularCliente").value.length > 7) {
-    document.getElementById("emailCliente").disabled=false;
-  } else {
-    document.getElementById("bandeiraCartao").disabled=true;
-    document.getElementById("numeroCartao").disabled=true;
-    document.getElementById("nomeTitularCartao").disabled=true;
-    document.getElementById("dtValidadeCartao").disabled=true;
-    document.getElementById("codSegurancaCartao").disabled=true;
-    document.getElementById("emailCliente").disabled=true;
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function celularOk() {
+//   if (document.getElementById("ddicelularCliente").value != "" && document.getElementById("dddcelularCliente").value != "" && document.getElementById("celularCliente").value != "" && document.getElementById("celularCliente").value.length > 7) {
+//     document.getElementById("emailCliente").disabled=false;
+//   } else {
+//     document.getElementById("bandeiraCartao").disabled=true;
+//     document.getElementById("numeroCartao").disabled=true;
+//     document.getElementById("nomeTitularCartao").disabled=true;
+//     document.getElementById("dtValidadeCartao").disabled=true;
+//     document.getElementById("codSegurancaCartao").disabled=true;
+//     document.getElementById("emailCliente").disabled=true;
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function emailOk() {
-  if (document.getElementById("emailCliente").value != "") {
-    document.getElementById("bandeiraCartao").disabled=false;
-  } else {
-    document.getElementById("bandeiraCartao").disabled=true;
-    document.getElementById("numeroCartao").disabled=true;
-    document.getElementById("nomeTitularCartao").disabled=true;
-    document.getElementById("dtValidadeCartao").disabled=true;
-    document.getElementById("codSegurancaCartao").disabled=true;
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function emailOk() {
+//   if (document.getElementById("emailCliente").value != "") {
+//     document.getElementById("bandeiraCartao").disabled=false;
+//   } else {
+//     document.getElementById("bandeiraCartao").disabled=true;
+//     document.getElementById("numeroCartao").disabled=true;
+//     document.getElementById("nomeTitularCartao").disabled=true;
+//     document.getElementById("dtValidadeCartao").disabled=true;
+//     document.getElementById("codSegurancaCartao").disabled=true;
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function bandeiraCartaoOk() {
-  if (document.getElementById("bandeiraCartao").value != "0") {
-    document.getElementById("numeroCartao").disabled=false;
-  } else {
-    document.getElementById("numeroCartao").disabled=true;
-    document.getElementById("nomeTitularCartao").disabled=true;
-    document.getElementById("dtValidadeCartao").disabled=true;
-    document.getElementById("codSegurancaCartao").disabled=true;
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function bandeiraCartaoOk() {
+//   if (document.getElementById("bandeiraCartao").value != "0") {
+//     document.getElementById("numeroCartao").disabled=false;
+//   } else {
+//     document.getElementById("numeroCartao").disabled=true;
+//     document.getElementById("nomeTitularCartao").disabled=true;
+//     document.getElementById("dtValidadeCartao").disabled=true;
+//     document.getElementById("codSegurancaCartao").disabled=true;
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function numeroCartaoOk() {
-  if (document.getElementById("emailCliente").value != "") {
-    document.getElementById("nomeTitularCartao").disabled=false;
-  } else {
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function numeroCartaoOk() {
+//   if (document.getElementById("emailCliente").value != "") {
+//     document.getElementById("nomeTitularCartao").disabled=false;
+//   } else {
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function nomeTitularCartaoOk() {
-  if (document.getElementById("nomeTitularCartao").value != "") {
-    document.getElementById("dtValidadeCartao").disabled=false;
-  } else {
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function nomeTitularCartaoOk() {
+//   if (document.getElementById("nomeTitularCartao").value != "") {
+//     document.getElementById("dtValidadeCartao").disabled=false;
+//   } else {
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function dtValidadeCartaoOk() {
-  if (document.getElementById("dtValidadeCartao").value != "") {
-    document.getElementById("codSegurancaCartao").disabled=false;
-  } else {
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function dtValidadeCartaoOk() {
+//   if (document.getElementById("dtValidadeCartao").value != "") {
+//     document.getElementById("codSegurancaCartao").disabled=false;
+//   } else {
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function codSegurancaCartaoOk() {
-  if (document.getElementById("codSegurancaCartao").value != "") {
-    document.getElementById("agree").disabled=false;
-  } else {
-    document.getElementById("agree").disabled=true;
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function codSegurancaCartaoOk() {
+//   if (document.getElementById("codSegurancaCartao").value != "") {
+//     document.getElementById("agree").disabled=false;
+//   } else {
+//     document.getElementById("agree").disabled=true;
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
-function agreeOk() {
-  if (document.getElementById("agree").checked) {
-    document.getElementById("confirmar").disabled=false;
-  } else {
-    document.getElementById("confirmar").disabled=true;
-  }
-}
+// function agreeOk() {
+//   if (document.getElementById("agree").checked) {
+//     document.getElementById("confirmar").disabled=false;
+//   } else {
+//     document.getElementById("confirmar").disabled=true;
+//   }
+// }
 
 </script>
 	</head>
@@ -288,11 +288,13 @@ function agreeOk() {
         if (isset($_GET['crianca'])) {
           $hospedes = array(new GuestCount(1), new GuestCount(1, 8, $idadeCrianca));
           $qtdHospedes = 2;
-          echo "tem criança. idade= ".$idadeCrianca;
+          $temCrianca = "true";
+          // echo "tem criança. idade= ".$idadeCrianca;
         } else {
           $hospedes = array(new GuestCount($adulto));
           $qtdHospedes = $adulto;
-          echo "nao tem criança";
+          $temCrianca = "false";
+          // echo "nao tem criança";
         }
 
         try {
@@ -418,6 +420,9 @@ function agreeOk() {
                     <input type="hidden" name="diaria" value=<?php echo $valorDiaria ?> />
                     <input type="hidden" name="totalDiaria" value=<?php echo $totalDiaria ?> />
                     <input type="hidden" name="codQuarto" value=<?php echo $codQuarto ?> />
+                    <input type="hidden" name="temCrianca" value=<?php echo $temCrianca ?> />
+                    <input type="hidden" name="idadeCrianca" value=<?php echo $idadeCrianca ?> />
+                    <input type="hidden" name="qtdHospedes" value=<?php echo $qtdHospedes ?> />
 
                     <table style="width: 100%;">
                       <tr><td>
@@ -426,8 +431,8 @@ function agreeOk() {
                     <input type="text" name="sobrenomeCliente" id="sobrenomeCliente" class="span3 sobrenome" placeholder="Sobrenome" onkeyup="c('sobrenomeCliente')" onkeydown="nomeOk()" onchange="nomeOk()" required style="width: 150px;">
                   </td>
                   <td>
-                    <input id="documento" type="text" class="span3" placeholder="Documento" onkeyup="mascara( this, mdocumento );" maxlength="11" onkeydown="documentoOk()" onchange="documentoOk()" required disabled style="width: 140px;">&nbsp;
-                    <select name="s_documento" id="s_documento" class="span3" disabled style="width: 70px;">
+                    <input id="documento" type="text" class="span3" placeholder="Documento" onkeyup="mascara( this, mdocumento );" maxlength="11" onkeydown="documentoOk()" onchange="documentoOk()" required  style="width: 140px;">&nbsp;
+                    <select name="s_documento" id="s_documento" class="span3"  style="width: 70px;">
                       <option name="documento" value="cpf">CPF</option>
                       <option name="documento" value="rg">RG</option>
                     </select>
@@ -435,23 +440,30 @@ function agreeOk() {
                   </tr><tr><td>
 
                     <!-- <input type="text" name="celularCliente" class="span3" placeholder="Telefone" onkeyup="mascara( this, mtel );" maxlength="14" required>&nbsp; -->
-                    <input type="text" name="ddicelularCliente" id="ddicelularCliente" placeholder="DDI" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="2" disabled style="width: 30px;"> 
-                    <input type="text" name="dddcelularCliente" id="dddcelularCliente" placeholder="DDD" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="2" disabled style="width: 30px;"> 
-                    <input type="text" name="celularCliente" id="celularCliente" class="span3" placeholder="Telefone" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="9" disabled style="width: 100px;">&nbsp;
+                    <input type="text" name="ddicelularCliente" id="ddicelularCliente" placeholder="DDI" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="2"  style="width: 30px;"> 
+                    <input type="text" name="dddcelularCliente" id="dddcelularCliente" placeholder="DDD" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="2"  style="width: 30px;"> 
+                    <input type="text" name="celularCliente" id="celularCliente" class="span3" placeholder="Telefone" onkeydown="celularOk()" onchange="celularOk()" onkeyup="mascara( this, mdocumento );" maxlength="9"  style="width: 100px;">&nbsp;
                     </td><td>
-                    <input type="text" name="emailCliente" id="emailCliente" class="span3" placeholder="Email" id="emailCliente" maxlength="40" onBlur="memail();" onkeydown="emailOk()" onchange="emailOk()" disabled style="width: 200px;">
+                    <input type="text" name="emailCliente" id="emailCliente" class="span3" placeholder="Email" id="emailCliente" maxlength="40" onBlur="memail();" onkeydown="emailOk()" onchange="emailOk()"  style="width: 200px;">
                     </td></tr><tr><td>&nbsp;</td></tr>
-                    <tr><td colspan="2">
-                      <select name="bandeiraCartao" id="bandeiraCartao" class="span3" style="width: 150px;" onchange="bandeiraCartaoOk()" disabled>
+                    <tr><td>
+                      <select name="bandeiraCartao" id="bandeiraCartao" class="span3" style="width: 150px;" onchange="bandeiraCartaoOk()" >
                       <option value="0">Cartão</option>
                       <option value="VI">Visa</option>
                       <option value="MC">Master</option>
                     </select>&nbsp;
-                    <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Número" onkeydown="numeroCartaoOk()" onchange="numeroCartaoOk()" onkeyup="mascara( this, mdocumento );" maxlength="17" style="width: 150px;" disabled> &nbsp;
-                    <input type="text" name="nomeTitularCartao" id="nomeTitularCartao" placeholder="Nome do titular" onkeyup="c('nomeCliente')" onkeydown="nomeTitularCartaoOk()" onchange="nomeTitularCartaoOk()" style="width: 200px;" disabled><br>
-                    <input type="text" name="dtValidadeCartao" id="dtValidadeCartao" placeholder="Data de validade (mm/aa)" onkeyup="mascara( this, mdata );" onkeydown="dtValidadeCartaoOk()" onchange="dtValidadeCartaoOk()" maxlength="5" style="width: 180px;" disabled> &nbsp;
-                    <input type="text" name="codSegurancaCartao" id="codSegurancaCartao" placeholder="Código de segurança" onkeydown="codSegurancaCartaoOk()" onchange="codSegurancaCartaoOk()" onkeyup="mascara( this, mdocumento );" maxlength="3" style="width: 140px;" disabled> 
-                    </td></tr>
+                    <input type="text" name="numeroCartao" id="numeroCartao" placeholder="Número" onkeydown="numeroCartaoOk()" onchange="numeroCartaoOk()" onkeyup="mascara( this, mdocumento );" maxlength="17" style="width: 150px;" > &nbsp;
+                    <input type="text" name="nomeTitularCartao" id="nomeTitularCartao" placeholder="Nome do titular" onkeyup="c('nomeCliente')" onkeydown="nomeTitularCartaoOk()" onchange="nomeTitularCartaoOk()" style="width: 200px;" ><br>
+                    <input type="text" name="dtValidadeCartao" id="dtValidadeCartao" placeholder="Data de validade (mm/aa)" onkeyup="mascara( this, mdata );" onkeydown="dtValidadeCartaoOk()" onchange="dtValidadeCartaoOk()" maxlength="5" style="width: 180px;" > &nbsp;
+                    <input type="text" name="codSegurancaCartao" id="codSegurancaCartao" placeholder="Código de segurança" onkeydown="codSegurancaCartaoOk()" onchange="codSegurancaCartaoOk()" onkeyup="mascara( this, mdocumento );" maxlength="3" style="width: 140px;" > 
+                    </td>
+
+
+                    <td>
+                      Obs.:<br>
+                    <input type="text" name="comentarios" id="comentarios" placeholder="Ex: Cama de casal" style="width: 140px;" > 
+                    </td>
+                  </tr>
                     <tr><td>
                       
                     </td></tr>
@@ -488,13 +500,13 @@ function agreeOk() {
                 </textarea>
               </td></tr><tr><td>&nbsp;</td></tr>
               <tr><td colspan="2">
-            <label class="checkbox">&nbsp;* <input id="agree" type="checkbox" value="" onChange="agreeOk()" disabled>Confirmo que li e aceito as condições acima.</label>
+            <label class="checkbox">&nbsp;* <input id="agree" type="checkbox" value="" onChange="agreeOk()" >Confirmo que li e aceito as condições acima.</label>
 
             </td></tr><tr><td>&nbsp;</td></tr>
             <tr><td colspan="2">
             <button class="btn btn-large btn-inverse pull-left" type="button" onclick="voltarPasso1();">Voltar</button>
 
-            <button id="confirmar" class="btn btn-large btn-success pull-right" type="button" onclick="onclick= ValidaSemPreenchimento(document.forms[0]);" disabled>Confirmar a reserva</button>
+            <button id="confirmar" class="btn btn-large btn-success pull-right" type="button" onclick="onclick= ValidaSemPreenchimento(document.forms[0]);" >Confirmar a reserva</button>
             </td></tr></table>
         </div>
     </div>

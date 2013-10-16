@@ -48,6 +48,8 @@
         $chegada =$_POST["chegada"];
         $partida =$_POST["partida"];
         $codQuarto =$_POST["codQuarto"];
+
+        // $codigoPromocao =$_POST["codigoPromocao"];
        
         $totalDiaria =(int)$_POST["totalDiaria"];
 
@@ -56,13 +58,29 @@
         $email = $_POST["emailCliente"];
         $celular = $_POST["ddicelularCliente"].$_POST["dddcelularCliente"].$_POST["celularCliente"];
 
-
-
         $bandeiraCartao = $_POST["bandeiraCartao"];
         $numeroCartao = $_POST["numeroCartao"];
         $nomeTitularCartao = $_POST["nomeTitularCartao"];
         $dtValidadeCartao = dataCartao($_POST["dtValidadeCartao"]);
         $codSegurancaCartao = $_POST["codSegurancaCartao"];
+
+        $comentarios =$_POST["comentarios"];
+
+        $temCrianca = $_POST["codSegurancaCartao"];
+        $idadeCrianca = $_POST["idadeCrianca"];
+        $qtdHospedes = $_POST["qtdHospedes"];
+
+        if ($temCrianca) {
+          $hospedes = array(new GuestCount(1), new GuestCount(1, 8, $idadeCrianca));
+          // $qtdHospedes = 2;
+          // $temCrianca = "true";
+          // echo "tem criança. idade= ".$idadeCrianca;
+        } else {
+          $hospedes = array(new GuestCount($adulto));
+          // $qtdHospedes = $adulto;
+          // $temCrianca = "false";
+          // echo "nao tem criança";
+        }
 
         // $dtValidadeCartaoArray = split($dtValidadeCartao, "/");
         // $dtValidadeCartao = $dtValidadeCartaoArray[0].$dtValidadeCartaoArray[2];
@@ -88,27 +106,23 @@
         
            // echo "teste";
 
-            // var_dump(
+            var_dump(
                 $xml=  $service->incluiOuAlteraReserva(
                     '1234',
                     $requestorId,
                     $codHotel,
                     $codQuarto,
                     new Money($totalDiaria),
-                    new GuestList(array(new GuestCount(1))),
+                    new GuestList($hospedes),
                     new DateTimeInterval(new DateTime($chegada), new DateTime($partida)),
-                    //new DirectBill(),
-                    //new CreditCard('VI','4831660534239312','0712','128','TESTE Intertotal', 12),
                     new CreditCard($bandeiraCartao, $numeroCartao, $dtValidadeCartao, $codSegurancaCartao, $nomeTitularCartao, 1),
                     $nome,
                     $sobrenome,
                     $email,
-                    $celular
-                // )
+                    $celular,
+                    $comentarios
+                )
                 );
-
-             
-
 
         } catch (Exception $error) {
             echo $error;
@@ -135,6 +149,10 @@
                             <span>Data de chegada: <strong><?php echo $chegada ?> </strong></span>&nbsp;&nbsp;
                             <span>Data de saída: <strong><?php echo $partida ?></strong></span>&nbsp;&nbsp;
                                 <p></p>
+                            <span>Total: <strong><?php echo $totalDiaria ?></strong></span>&nbsp;&nbsp;
+                            <p></p>
+                            <span>Obs.: <strong><?php echo $comentarios ?></strong></span>&nbsp;&nbsp;
+                            <p></p>
                             <span>Telefone: <strong><?php echo $celular ?></strong></span>&nbsp;&nbsp;
                             <span>Email: <strong><?php echo $email ?></strong></span>&nbsp;&nbsp;
                                 <p></p>

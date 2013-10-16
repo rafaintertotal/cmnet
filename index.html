@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]> <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+<link rel="stylesheet" media="screen" href="style.css" />
+
+<!-- This is for mobile devices -->
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+
+<!-- This makes HTML5 elements work in IE 6-8 -->
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript">
+function temCrianca() {
+  if (document.getElementById("crianca").checked) {
+    document.getElementById("idadeCrianca").disabled=false;
+    document.getElementById("qtdAdultos").value="1";
+    document.getElementById("qtdAdultos").disabled=true;
+  } else {
+    document.getElementById("idadeCrianca").disabled=true;
+    document.getElementById("qtdAdultos").disabled=false;
+    document.getElementById("idadeCrianca").value="0";
+  }
+}
+
+function doisAdultos() {
+  if (document.getElementById("qtdAdultos").value > 1) {
+  	document.getElementById("crianca").checked = false;
+    document.getElementById("crianca").disabled=true;
+    document.getElementById("idadeCrianca").disabled=true;
+  } else {
+    // document.getElementById("crianca").checked = false;
+    document.getElementById("crianca").disabled=false;
+    document.getElementById("idadeCrianca").disabled=false;
+  }
+}
+</script>
+</head>
+
+<body>
+<form id="form" action="ListaHoteis.php" method="GET" style="margin-top:30px; margin-bottom:0px;">
+<h2>Selecione o hotel:</h2>
+<div class="styled">
+	<select id="codHotel" name="CodHotel">
+		
+		<option value="208245">Citi Hotel Residence</option>
+		<option value="208244">Hotel Central</option>
+		<option value="208243">BR Palace</option>
+	</select>
+</div>
+<br>
+<h2>Data de chegada:</h2>
+<p><input name="chegada" id="dtchegada" type="text" placeholder="dd/mm/aaaa" value="20/10/2013"></p>
+<br>
+<h2>Data de partida:</h2>
+<p><input name="partida" id="dtpartida" type="text" placeholder="dd/mm/aaaa" value="21/10/2013"></p> 
+<br>
+<h2>Adultos:</h2>
+<div class="styled">
+	<select id="qtdAdultos" name="qtdAdultos" onChange="doisAdultos()">
+		<option selected="selected" value="1">1</option>
+		<option value="2">2</option>
+	</select>
+</div>
+<br>
+<h2>Criança:</h2>
+<p>
+<input type="checkbox" name="crianca" id="crianca" value="true" onChange="temCrianca()" /><label for="crianca">Sim</label></p>
+</p>
+<h2>Idade da criança:</h2>
+<div class="styled">
+	<select id="idadeCrianca" name="idadeCrianca" disabled>
+		<option selected="selected" value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+	</select>
+</div>
+<br>
+</span>
+<p><input type="submit" value="Procurar &raquo;"> </p>
+</form>
+</body>
+</html>

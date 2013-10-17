@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Passo 2</title>
+<title>Dados da reserva</title>
 <link rel="stylesheet" media="screen" href="style.css" />
 
 <!-- This is for mobile devices -->
@@ -16,7 +16,33 @@
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <!-- início dos links -->
 <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
-<!-- início dos scripts -->
+
+<!-- Início do CSS -->
+<style type="text/css">
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<!-- Início dos Scripts -->
+<script type="text/javascript">
+function continuarPasso3(){
+  document.getElementById("container-passo2").style.display="none";
+  document.getElementById("container-passo3").style.display="";
+}
+
+function voltarPasso2(){
+  document.getElementById("container-passo3").style.display="none";
+  document.getElementById("container-passo2").style.display="";
+}
+</script>
 </head>
 <body>
 <?php
@@ -81,11 +107,17 @@ if (isset($_GET['crianca'])) {
   $temCrianca = "false";
 }
 
-try {
+//-----------------------------------------------------------------------------------------------------
+//-----Definir timezone
+//-----------------------------------------------------------------------------------------------------
+
+date_default_timezone_set('America/Sao_Paulo');
 
 //-----------------------------------------------------------------------------------------------------
 //-----Iniciar serviço
 //-----------------------------------------------------------------------------------------------------
+
+try {
 
     $autenticacao = new CmnetAuthHeader('PACITIH', 'PACITIH', 476283);
     $requestorId = new RequestorIdentification(
@@ -97,33 +129,31 @@ try {
     $service = new CmnetService($autenticacao);
 
 //-----------------------------------------------------------------------------------------------------
-//-----Definir timezone
-//-----------------------------------------------------------------------------------------------------
-
-    date_default_timezone_set('America/Sao_Paulo');
-
-//-----------------------------------------------------------------------------------------------------
 //-----Gerar XML
 //-----------------------------------------------------------------------------------------------------
 
-    var_dump($xml = $service->consultaDisponibilidadeHotel(
-            '1234',
-            $requestorId,
-            new DateTimeInterval(new DateTime($chegada), new DateTime($partida)),
-            new GuestList($hospedes),
-            new HotelSearchCriteria($codHotel,null)
-        ));
+//     var_dump(
 
-    // $warning = $xml->Warnings->Warning;
-    // $erro = $xml->Error;
+      $xml = $service->consultaDisponibilidadeHotel(
+          '1234',
+          $requestorId,
+          new DateTimeInterval(new DateTime($chegada), new DateTime($partida)),
+          new GuestList($hospedes),
+          new HotelSearchCriteria($codHotel,null)
+      );
+
+//     );
+
+//     $warning = $xml->Warnings->Warning;
+//     $erro = $xml->Error;
    
-    // if($warning!="") {
+//     if($warning!="") {
 
-    //     echo "<center><h3 style='margin-top: 30px;'>".$warning."</center>";
-    //     $isDisponivel = false;
-    //     }
+//         echo "<center><h3 style='margin-top: 30px;'>".$warning."</center>";
+//         $isDisponivel = false;
+//         }
 
-    // else{
+//     else{
 
        $isDisponivel = true;
        $titulo = $xml->RoomStays->RoomStay->BasicPropertyInfo->attributes()->HotelName;
@@ -133,8 +163,9 @@ try {
        $descApartamento = $xml->RoomStays->RoomStay->RoomTypes->RoomType->AdditionalDetails->AdditionalDetail[0]->DetailDescription->Text;
        $codQuarto = $xml->RoomStays->RoomStay->RoomRates->RoomRate->attributes()->RoomTypeCode;
        $valorDiaria = $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Base->attributes()->AmountBeforeTax;
-       $totalDiaria= $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Total->attributes()->AmountAfterTax;
-    // };                
+       $valorTotal= $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Total->attributes()->AmountAfterTax;
+
+//     };                
 
 
 } catch (Exception $error) {
@@ -144,17 +175,128 @@ try {
 //-----------------------------------------------------------------------------------------------------
 //-----Verifica se tem quarto disponível
 //-----------------------------------------------------------------------------------------------------
-if ($isDisponivel) { ?>
-<div>
-	<div><?php echo $titulo; ?></div>
-	<div><img src=<?php echo $imagem; ?> alt="imagem-hotel" class="img-polaroid"></div>
-	<div><?php echo $endereco; ?></div>
-	<div><?php echo $apartamento; ?></div>
-	<div><?php echo $descApartamento; ?></div>
-	<div><?php echo $qtdHospedes ?></div>
-	<div>R$ <?php echo $valorDiaria ?></div>
-	<div>R$ <?php echo $totalDiaria ?></div>
+// if ($isDisponivel) { 
+?>
+<style type="text/css">
+#container-passo2, #container-passo3 {width: 100%; overflow: auto;}
+#passo-titulo {width: 100%; margin-bottom: 20px; padding-bottom: 10px; border-bottom: solid 1px #074289; color: #074289; font-size: 24px; font-weight: bold;}
+#container-passo2 #hotel-header {width: 100%; display: inline-block; margin: 10 0;}
+#container-passo2 #hotel-header div {float: left; width: 360px;}
+#container-passo2 #hotel-header #imagem {width: 240px;}
+#container-passo2 #hotel-header #imagem img {max-width: 240px;}
+#container-passo2 #hotel-header #titulo p.titulo {padding: 0 20px; font-size: 36px; font-weight: bold;}
+#container-passo2 #hotel-header #titulo p.endereco {padding: 0 20px;}
+#container-passo2 #hotel-info .titulo {width: 96%; margin: 10 0; font-size: 16px; font-weight: bold; background-color: #def; padding: 10px;}
+#container-passo2 #hotel-info .desc {width: 100%; padding: 0; text-indent: 10;}
+#container-botoes {width: 100%; display: inline-block; margin-top: 20;}
+#container-botoes #finalizar {float: right;}
+#container-botoes #anterior {float: left;}
+#container-botoes #proximo {float: right;}
+</style>
+
+<!-- Passo 1 -->
+<div id="container-passo2" >
+  <div id="passo-titulo">01. Dados do hotel</div>
+  <div id="hotel-header">
+    <div id="imagem"><img src=<?php echo $imagem; ?> alt=<?php echo $titulo; ?> class="img-polaroid"></div>
+    <div id="titulo">
+      <p class="titulo"><?php echo $titulo; ?></p>
+      <p class="endereco"><?php echo $endereco; ?></p>
+    </div>
+  </div>
+  <div id="hotel-info">
+    <p class="titulo">Apartamento</p>
+    <p class="desc"><b><?php echo $apartamento; ?></b> - <?php echo $descApartamento; ?></p>
+    <p class="titulo">Qtd. hóspedes</p>
+    <p class="desc"><?php echo $qtdHospedes ?></p>
+    <p class="titulo">Valor da diária</p>
+    <p class="desc">R$ <?php echo $valorDiaria ?></p>
+    <p class="titulo">Valor total</p>
+    <p class="desc">R$ <?php echo $valorTotal ?></p>
+  </div>
+  <div id="container-botoes">
+    <div id="proximo"><input type="button" value="Continuar a reserva" onclick="continuarPasso3();"></div>
+  </div>
 </div>
-<?php } ?>
+
+<!-- Passo 2 -->
+
+<style type="text/css">
+
+@media only screen and (min-device-width: 800px) {
+
+#container-passo3 p {padding: 0 10;}
+#container-passo3 p.nome {float: left;}
+#container-passo3 p.sobrenome {}
+#container-passo3 p.email {float: left;}
+#container-passo3 p.fone {}
+#container-passo3 p.fone .ddd {width: 45px; margin-right: 5px;}
+#container-passo3 p.fone .fone {}
+#container-passo3 p.titulo-cartao {font-size: 18px; font-weight: bold; margin-top: 20; border-bottom: 1px dotted #000;}
+#container-passo3 div#cartao {float: left;}
+#container-passo3 .styled {margin: 0 10;}
+#container-passo3 p.numero {}
+#container-passo3 p.titular input {width: 300px;}
+#container-passo3 p.validade input {width: 140px; float: left; margin-right: 10px;}
+#container-passo3 p.codigo input {width: 150px;}
+
+}
+
+@media only screen and (max-device-width: 800px) {
+
+#container-passo3 p.fone .ddd {width: 45px; margin-right: 5px;}
+#container-passo3 p.fone .fone {width: 155px;}
+#container-passo3 p.titulo-cartao {font-size: 18px; font-weight: bold; margin-top: 20; border-bottom: 1px dotted #000;}
+#container-passo3 div#cartao {width: 99%; margin-bottom: 20px;}
+#container-passo3 p.validade input {width: 123px; float: left; margin-right: 10px;}
+#container-passo3 p.codigo input {width: 123px;}
+
+}
+</style>
+
+<div id="container-passo3" style="display: none;">
+  <div id="passo-titulo">02. Dados da reserva</div>
+  <form action="step3.php" method="post">
+    <!-- Passar valores do XML pelo formulário -->
+    <input type="hidden" name="codHotel" value=<?php echo $codHotel ?> />
+    <input type="hidden" name="partida" value=<?php echo $partida ?> />
+    <input type="hidden" name="chegada" value=<?php echo $chegada ?> />
+    <input type="hidden" name="valorDiaria" value=<?php echo $valorDiaria ?> />
+    <input type="hidden" name="valorTotal" value=<?php echo $valorTotal ?> />
+    <input type="hidden" name="codQuarto" value=<?php echo $codQuarto ?> />
+    <input type="hidden" name="temCrianca" value=<?php echo $temCrianca ?> />
+    <input type="hidden" name="idadeCrianca" value=<?php echo $idadeCrianca ?> />
+    <input type="hidden" name="qtdHospedes" value=<?php echo $qtdHospedes ?> />
+    <!-- Capturar valores do usuário -->
+    <p class="nome"><input type="text" name="nomeCliente" placeholder="Nome"></p>
+    <p class="sobrenome"><input type="text" name="sobrenomeCliente" placeholder="Sobrenome"></p>
+    <p class="email"><input type="text" name="emailCliente" placeholder="E-mail"></p>
+    <p class="fone"><input type="text" name="ddiCliente" placeholder="DDI" size="1" maxlength="3" class="ddd">
+                    <input type="text" name="dddCliente" placeholder="DDD" size="1" maxlength="3"  class="ddd">
+                    <input type="text" name="foneCliente" placeholder="Telefone" class="fone"></p>
+    <p class="titulo-cartao">Dados do cartão</p>
+    <div id="cartao" class="styled">
+      <select name="bandeiraCartao" id="bandeiraCartao" class="span3">
+        <option value="0">Cartão</option>
+        <option value="VI">Visa</option>
+        <option value="MC">Master</option>
+      </select>
+    </div>
+    <p class="numero"><input type="text" name="numeroCartao" placeholder="Número"></p>
+    <p class="titular"><input type="text" name="nomeTitularCartao" placeholder="Nome do titular como está no cartão"></p>
+    <p class="validade"><input type="text" name="dtValidadeCartao" placeholder="Validade"></p>
+    <p class="codigo"><input type="text" name="codSegurancaCartao" placeholder="Código de segurança"></p>
+    <p>
+      <textarea name="politica_restricoes" rows="10" readonly="readonly"><?php include 'politica-citi-hoteis.html'; ?></textarea>
+    </p>
+    <div id="container-botoes">
+      <div id="anterior"><input type="button" value="Voltar" onclick="voltarPasso2();"></div>
+      <div id="finalizar"><input type="submit" value="Confirmar"></div>
+    </div>
+  </form>
+</div>
+<?php 
+// } 
+?>
 </body>
 </html>

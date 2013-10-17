@@ -1,9 +1,9 @@
 ﻿/* ----------------------------------------------  Layout ----------------------------------------------  */
 
-	html {background-color:#9d3d1e; background-image: linear-gradient(to bottom, #e16729, #9d3d1e); background-repeat: no-repeat;}
+	html {background-color:#ad4f1f; background-image: linear-gradient(to bottom, #e16729, #ad4f1f); background-repeat: no-repeat;}
 	body {
 		font-size:16px; font-family:Arial; width:600px; background-color:#fff; 
-		margin:2em auto; padding:5%; line-height:1.6em; 
+		margin:2em auto; padding:5%;/* line-height:1.6em;*/ 
 		-webkit-box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
 		box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
 		color:#444;

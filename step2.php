@@ -19,8 +19,9 @@
 
 <!-- Início do CSS -->
 <style type="text/css">
-
-
+@media only screen and (min-device-width: 600px) {
+body {height: 670px;}
+}
 </style>
 
 <!-- Início dos Scripts -->
@@ -315,7 +316,7 @@ if ($isDisponivel) {
 </div>
 <?php 
 } else {
-  echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>Por favor, verifique os dados e tente novamente</center>";
+  echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>Por favor, tente novamente novamente mais tarde.</center>";
 }
 ?>
 </body>

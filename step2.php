@@ -20,15 +20,7 @@
 <!-- Início do CSS -->
 <style type="text/css">
 
-.img-polaroid {
-  padding: 4px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+
 </style>
 
 <!-- Início dos Scripts -->
@@ -42,6 +34,19 @@ function voltarPasso2(){
   document.getElementById("container-passo3").style.display="none";
   document.getElementById("container-passo2").style.display="";
 }
+
+function submitForm() {
+  // if () {
+  //   document.getElementById("container-passo2").style.display="none";  
+    document.getElementById("form").submit();
+  // }
+  // else {document.getElementById("warning").style.display="";}
+}
+
+// function goBack() {
+//   alert("oioi");
+//   window.history.go(-1);
+// }
 </script>
 </head>
 <body>
@@ -144,16 +149,15 @@ try {
 
 //     );
 
-//     $warning = $xml->Warnings->Warning;
-//     $erro = $xml->Error;
+    $warning = $xml->Warnings->Warning;
+    $erro = $xml->Error;
    
-//     if($warning!="") {
+    if($warning!="") {
+      echo "<center><h3 style='margin-top: 30px;'>".$warning."</center>";
+      $isDisponivel = false;
+    }
 
-//         echo "<center><h3 style='margin-top: 30px;'>".$warning."</center>";
-//         $isDisponivel = false;
-//         }
-
-//     else{
+    else{
 
        $isDisponivel = true;
        $titulo = $xml->RoomStays->RoomStay->BasicPropertyInfo->attributes()->HotelName;
@@ -165,7 +169,7 @@ try {
        $valorDiaria = $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Base->attributes()->AmountBeforeTax;
        $valorTotal= $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Total->attributes()->AmountAfterTax;
 
-//     };                
+    };                
 
 
 } catch (Exception $error) {
@@ -175,26 +179,37 @@ try {
 //-----------------------------------------------------------------------------------------------------
 //-----Verifica se tem quarto disponível
 //-----------------------------------------------------------------------------------------------------
-// if ($isDisponivel) { 
+if ($isDisponivel) { 
 ?>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////Passo 1//////////////////////////////////////////////////////////////////////////////-->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////-->
+
 <style type="text/css">
 #container-passo2, #container-passo3 {width: 100%; overflow: auto;}
 #passo-titulo {width: 100%; margin-bottom: 20px; padding-bottom: 10px; border-bottom: solid 1px #074289; color: #074289; font-size: 24px; font-weight: bold;}
-#container-passo2 #hotel-header {width: 100%; display: inline-block; margin: 10 0;}
-#container-passo2 #hotel-header div {float: left; width: 360px;}
+#container-passo2 #hotel-header {width: 98%; display: inline-block; margin: 10 0;}
+#container-passo2 #hotel-header div {float: left; max-width: 340px;}
 #container-passo2 #hotel-header #imagem {width: 240px;}
 #container-passo2 #hotel-header #imagem img {max-width: 240px;}
 #container-passo2 #hotel-header #titulo p.titulo {padding: 0 20px; font-size: 36px; font-weight: bold;}
 #container-passo2 #hotel-header #titulo p.endereco {padding: 0 20px;}
-#container-passo2 #hotel-info .titulo {width: 96%; margin: 10 0; font-size: 16px; font-weight: bold; background-color: #def; padding: 10px;}
-#container-passo2 #hotel-info .desc {width: 100%; padding: 0; text-indent: 10;}
-#container-botoes {width: 100%; display: inline-block; margin-top: 20;}
+#container-passo2 #hotel-info .titulo {margin: 10 0; font-size: 16px; font-weight: bold; background-color: #def; padding: 10px;}
+#container-passo2 #hotel-info .desc {width: 96%; padding: 0; text-indent: 10;}
+#container-botoes {width: 100%; display: inline-block; margin: 10 0;}
 #container-botoes #finalizar {float: right;}
 #container-botoes #anterior {float: left;}
 #container-botoes #proximo {float: right;}
+
+@media only screen and (max-device-width: 600px) {
+
+#container-passo2 #hotel-header #titulo p.titulo {padding: 0; font-size: 36px; font-weight: bold; margin: 10 0;}
+#container-passo2 #hotel-header #titulo p.endereco {padding: 0; margin-bottom: 0;}
+
+}
 </style>
 
-<!-- Passo 1 -->
 <div id="container-passo2" >
   <div id="passo-titulo">01. Dados do hotel</div>
   <div id="hotel-header">
@@ -215,11 +230,14 @@ try {
     <p class="desc">R$ <?php echo $valorTotal ?></p>
   </div>
   <div id="container-botoes">
-    <div id="proximo"><input type="button" value="Continuar a reserva" onclick="continuarPasso3();"></div>
+    <div id="anterior"><a href="index.html" class="btn">Voltar</a></div>
+    <div id="proximo"><a href="#" class="btn btn-primary" onclick="continuarPasso3();">Continuar a reserva</a></div>
   </div>
 </div>
 
-<!-- Passo 2 -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////Passo 2//////////////////////////////////////////////////////////////////////////////-->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////-->
 
 <style type="text/css">
 
@@ -244,9 +262,9 @@ try {
 
 @media only screen and (max-device-width: 800px) {
 
-#container-passo3 p.fone .ddd {width: 45px; margin-right: 5px;}
+#container-passo3 p.fone .ddd {width: 45px; margin-right: 5px; float: left;}
 #container-passo3 p.fone .fone {width: 155px;}
-#container-passo3 p.titulo-cartao {font-size: 18px; font-weight: bold; margin-top: 20; border-bottom: 1px dotted #000;}
+#container-passo3 p.titulo-cartao {font-size: 18px; font-weight: bold; margin-top: 40; border-bottom: 1px dotted #000;}
 #container-passo3 div#cartao {width: 99%; margin-bottom: 20px;}
 #container-passo3 p.validade input {width: 123px; float: left; margin-right: 10px;}
 #container-passo3 p.codigo input {width: 123px;}
@@ -256,7 +274,7 @@ try {
 
 <div id="container-passo3" style="display: none;">
   <div id="passo-titulo">02. Dados da reserva</div>
-  <form action="step3.php" method="post">
+  <form id="form" action="step3.php" method="post">
     <!-- Passar valores do XML pelo formulário -->
     <input type="hidden" name="codHotel" value=<?php echo $codHotel ?> />
     <input type="hidden" name="partida" value=<?php echo $partida ?> />
@@ -290,13 +308,15 @@ try {
       <textarea name="politica_restricoes" rows="10" readonly="readonly"><?php include 'politica-citi-hoteis.html'; ?></textarea>
     </p>
     <div id="container-botoes">
-      <div id="anterior"><input type="button" value="Voltar" onclick="voltarPasso2();"></div>
-      <div id="finalizar"><input type="submit" value="Confirmar"></div>
+      <div id="anterior"><a href="#" class="btn" onclick="voltarPasso2();">Voltar</a></div>
+      <div id="finalizar"><a href="#" class="btn btn-success" onclick="submitForm()">Confirmar</a></div>
     </div>
   </form>
 </div>
 <?php 
-// } 
+} else {
+  echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>Por favor, verifique os dados e tente novamente</center>";
+}
 ?>
 </body>
 </html>

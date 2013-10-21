@@ -61,7 +61,7 @@ $chegada =$_POST["chegada"];
 $partida =$_POST["partida"];
 $codQuarto =$_POST["codQuarto"];
 
-$totalDiaria =(int)$_POST["valorTotal"];
+$valorTotal =(int)$_POST["valorTotal"];
 
 $nome =$_POST["nomeCliente"];
 $sobrenome =$_POST["sobrenomeCliente"];
@@ -100,42 +100,42 @@ date_default_timezone_set('America/Sao_Paulo');
 //-----Iniciar serviço
 //-----------------------------------------------------------------------------------------------------
 
-// try {
+try {
 
-    // $autenticacao = new CmnetAuthHeader('PACITIH', 'PACITIH', 476283);
-    // $requestorId = new RequestorIdentification(
-    //     $codHotel,
-    //     RequestorIdentification::PARCEIRO,
-    //     'http://www.citihoteis.com.br'
-    // );
+    $autenticacao = new CmnetAuthHeader('PACITIH', 'PACITIH', 476283);
+    $requestorId = new RequestorIdentification(
+        $codHotel,
+        RequestorIdentification::PARCEIRO,
+        'http://www.citihoteis.com.br'
+    );
 
-    // $service = new CmnetService($autenticacao);
+    $service = new CmnetService($autenticacao);
 
 //-----------------------------------------------------------------------------------------------------
 //-----Gerar XML
 //-----------------------------------------------------------------------------------------------------
 
-//     var_dump(
-//         $xml=  $service->incluiOuAlteraReserva(
-//             '1234',
-//             $requestorId,
-//             $codHotel,
-//             $codQuarto,
-//             new Money($valorTotal),
-//             new GuestList($hospedes),
-//             new DateTimeInterval(new DateTime($chegada), new DateTime($partida)),
-//             new CreditCard($bandeiraCartao, $numeroCartao, $dtValidadeCartao, $codSegurancaCartao, $nomeTitularCartao, 1),
-//             $nome,
-//             $sobrenome,
-//             $email,
-//             $celular,
-//             $comentarios
-//         )
-//         );
+    var_dump(
+        $xml=  $service->incluiOuAlteraReserva(
+            '1234',
+            $requestorId,
+            $codHotel,
+            $codQuarto,
+            new Money($valorTotal),
+            new GuestList($hospedes),
+            new DateTimeInterval(new DateTime($chegada), new DateTime($partida)),
+            new CreditCard($bandeiraCartao, $numeroCartao, $dtValidadeCartao, $codSegurancaCartao, $nomeTitularCartao, 1),
+            $nome,
+            $sobrenome,
+            $email,
+            $celular,
+            $comentarios
+        )
+        );
 
-// } catch (Exception $error) {
-//     echo $error;
-// }
+} catch (Exception $error) {
+    echo $error;
+}
 ?>
 <div class="container" style="height: 620px;">
 
@@ -152,13 +152,11 @@ date_default_timezone_set('America/Sao_Paulo');
                             <span>Data de chegada: <strong><?php echo $chegada ?> </strong></span>&nbsp;&nbsp;
                             <span>Data de saída: <strong><?php echo $partida ?></strong></span>&nbsp;&nbsp;
                                 <p></p>
-                            <span>Total: <strong><?php echo $valorTotal ?></strong></span>&nbsp;&nbsp;
-                            <p></p>
-                            <span>Obs.: <strong><?php echo $comentarios ?></strong></span>&nbsp;&nbsp;
-                            <p></p>
                             <span>Telefone: <strong><?php echo $celular ?></strong></span>&nbsp;&nbsp;
                             <span>Email: <strong><?php echo $email ?></strong></span>&nbsp;&nbsp;
                                 <p></p>
+                            <span>Total: <strong>R$ <?php echo $valorTotal ?></strong></span>&nbsp;&nbsp;
+                            <p></p>
                             <span>Cartão: <strong><?php echo $bandeiraCartao ?></strong></span>&nbsp;&nbsp;
                             <?php echo $numeroCartao ?></strong></span>&nbsp;&nbsp;
                         </div>

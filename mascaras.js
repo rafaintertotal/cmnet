@@ -19,7 +19,7 @@ function MascaraCep(cep){
 function MascaraData(data){
         if(mascaraInteiro(data)==false){
                 event.returnValue = false;
-        }       
+        }
         return formataCampo(data, '00/00/0000', event);
 }
 
@@ -55,12 +55,24 @@ function ValidaCep(cep){
 
 //valida data
 function ValidaData(data){
-        exp = /\d{2}\/\d{2}\/\d{4}/
-        if(!exp.test(data.value)) {
-                // alert('Data Invalida!');
-                document.getElementById(data.id+"-erro").style.display="";
+        // var exp = /\d{2}\/\d{2}\/\d{4}/;
+        // var patternData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+        // if(!exp.test(data.value)) {
+        //     // alert('Data Invalida!');
+        //     document.getElementById(data.id+"-erro").style.display="";
+        // } else if (!patternData.test(data.value)) {
+        //     document.getElementById(data.id+"-erro").style.display="";
+        // } else {
+        //     document.getElementById(data.id+"-erro").style.display="none";
+        // }
+
+        if(VerificaData(data)) {
+            document.getElementById(data.id+"-erro").style.display="none";
+            document.getElementById("warning").style.display="none";
+            document.getElementById("formOk").value="true";
         } else {
-                document.getElementById(data.id+"-erro").style.display="none";
+            document.getElementById(data.id+"-erro").style.display="";
+            document.getElementById("formOk").value="false";
         }
 }
 
@@ -149,4 +161,140 @@ function formataCampo(campo, Mascara, evento) {
         }else { 
                 return true; 
         }
+}
+
+//verificar data NOVO
+
+function VerificaData(cData) {
+
+    var data = cData.value; 
+
+    var tam = data.length;
+
+    if (tam != 10) {
+
+  return false;
+
+    }
+
+    var dia = data.substr(0,2)
+
+    var mes = data.substr (3,2)
+
+    var ano = data.substr (6,4) 
+
+    if (ano < 2013) {
+
+  return false;
+
+    }
+
+    switch (mes) {
+
+  case '01':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '02':
+
+     if  (dia <= 29) 
+
+    return (true);
+
+     break;
+
+  case '03':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '04':
+
+     if  (dia <= 30) 
+
+    return (true);
+
+     break;
+
+  case '05':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '06':
+
+     if  (dia <= 30) 
+
+    return (true);
+
+     break;
+
+  case '07':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '08':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '09':
+
+     if  (dia <= 30) 
+
+    return (true);
+
+     break;
+
+  case '10':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+  case '11':
+
+     if  (dia <= 30) 
+
+    return (true);
+
+     break;
+
+  case '12':
+
+     if  (dia <= 31) 
+
+    return (true);
+
+     break;
+
+    }
+
+    {
+
+  return false;
+
+    }
+
+    return true; 
+
 }

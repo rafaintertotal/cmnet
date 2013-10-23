@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Dados do hotel</title>
+<title>Dados do Hotel</title>
 <link rel="stylesheet" media="screen" href="style.css" />
 
 <!-- This is for mobile devices -->
@@ -31,20 +31,19 @@ function doisAdultos() {
   if (document.getElementById("qtdAdultos").value > 1) {
   	document.getElementById("crianca").checked = false;
     document.getElementById("crianca").disabled=true;
+    document.getElementById("sim").style.color="#999";
     document.getElementById("idadeCrianca").disabled=true;
   } else {
     // document.getElementById("crianca").checked = false;
     document.getElementById("crianca").disabled=false;
+    document.getElementById("sim").style.color="#000";
     document.getElementById("idadeCrianca").disabled=false;
   }
 }
 
 function submitForm() {
-	// if () {
-	//   document.getElementById("container-passo2").style.display="none";	
-	  document.getElementById("form").submit();
-	// }
-	// else {document.getElementById("warning").style.display="";}
+	if (document.getElementById("formOk").value=="true") {document.getElementById("form").submit();}
+	else {document.getElementById("warning").style.display="";}
 }
 </script>
 <style type="text/css">
@@ -80,7 +79,7 @@ function submitForm() {
 	<br>
 	<h2>Criança:</h2>
 	<p>
-	<input type="checkbox" name="crianca" id="crianca" value="true" onChange="temCrianca()" /><label for="crianca">Sim</label></p>
+	<input type="checkbox" name="crianca" id="crianca" value="true" onChange="temCrianca()" /><label for="crianca" id="sim">Sim</label></p>
 	</p>
 	<h2>Idade da criança:</h2>
 	<div class="styled">
@@ -105,7 +104,10 @@ function submitForm() {
 		</select>
 	</div>
 	<br>
-	</span>
+	<div id="warning" style="color: red; display: none;">Por favor, preencha os campos corretamente</div>
+	<div id="warning-hospedes" style="color: red; display: none;">Por favor, preencha os campos corretamente</div>
+	<br>
+	<input type="hidden" id="formOk" name="formOk" value="false">
 	<p><a href="#" class="btn btn-primary" onclick="submitForm();">Procurar &raquo;</a></p>
 	<p id="warning" style="display:none">Preencha os campos corretamente!</p>
 </form>

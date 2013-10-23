@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Dados da reserva</title>
+<title>Dados da Reserva</title>
 <link rel="stylesheet" media="screen" href="style.css" />
 
 <!-- This is for mobile devices -->
@@ -138,7 +138,7 @@ try {
 //-----Gerar XML
 //-----------------------------------------------------------------------------------------------------
 
-//     var_dump(
+    // var_dump(
 
       $xml = $service->consultaDisponibilidadeHotel(
           '1234',
@@ -148,33 +148,32 @@ try {
           new HotelSearchCriteria($codHotel,null)
       );
 
-//     );
+    // );
 
     $warning = $xml->Warnings->Warning;
-    $erro = $xml->Error;
+    $erro = $xml->Errors->Error;
    
-    if($warning!="") {
-      echo "<center><h3 style='margin-top: 30px;'>".$warning."</center>";
+    if($erro!="" || $warning!="") {
+      echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>".$erro.$warning."</center>";
+      break;
       $isDisponivel = false;
-    }
-
-    else{
-
-       $isDisponivel = true;
-       $titulo = $xml->RoomStays->RoomStay->BasicPropertyInfo->attributes()->HotelName;
-       $endereco = $xml->RoomStays->RoomStay->BasicPropertyInfo->Address->AddressLine[0];
-       $imagem = $xml->RoomStays->RoomStay->BasicPropertyInfo->VendorMessages->VendorMessage->SubSection->Paragraph->URL;
-       $apartamento = $xml->RoomStays->RoomStay->RoomTypes->RoomType->RoomDescription->Text;
-       $descApartamento = $xml->RoomStays->RoomStay->RoomTypes->RoomType->AdditionalDetails->AdditionalDetail[0]->DetailDescription->Text;
-       $codQuarto = $xml->RoomStays->RoomStay->RoomRates->RoomRate->attributes()->RoomTypeCode;
-       $valorDiaria = $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Base->attributes()->AmountBeforeTax;
-       $valorTotal= $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Total->attributes()->AmountAfterTax;
-
+    } else {
+      // echo "<center><h3 style='margin-top: 30px;'>chegou aqui</center>";
+      $isDisponivel = true;
+      $titulo = $xml->RoomStays->RoomStay->BasicPropertyInfo->attributes()->HotelName;
+      $endereco = $xml->RoomStays->RoomStay->BasicPropertyInfo->Address->AddressLine[0];
+      $imagem = $xml->RoomStays->RoomStay->BasicPropertyInfo->VendorMessages->VendorMessage->SubSection->Paragraph->URL;
+      $apartamento = $xml->RoomStays->RoomStay->RoomTypes->RoomType->RoomDescription->Text;
+      $descApartamento = $xml->RoomStays->RoomStay->RoomTypes->RoomType->AdditionalDetails->AdditionalDetail[0]->DetailDescription->Text;
+      $codQuarto = $xml->RoomStays->RoomStay->RoomRates->RoomRate->attributes()->RoomTypeCode;
+      $valorDiaria = $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Base->attributes()->AmountBeforeTax;
+      $valorTotal= $xml->RoomStays->RoomStay->RoomRates->RoomRate->Rates->Rate[0]->Total->attributes()->AmountAfterTax;
     };                
 
 
 } catch (Exception $error) {
-    echo $error;
+  echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>".$error->getMessage()."</center>";
+  break;
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -296,7 +295,6 @@ if ($isDisponivel) {
     <p class="titulo-cartao">Dados do cartão</p>
     <div id="cartao" class="styled">
       <select name="bandeiraCartao" id="bandeiraCartao" class="span3">
-        <option value="0">Cartão</option>
         <option value="VI">Visa</option>
         <option value="MC">Master</option>
       </select>

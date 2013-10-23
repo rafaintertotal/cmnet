@@ -115,7 +115,7 @@ try {
 //-----Gerar XML
 //-----------------------------------------------------------------------------------------------------
 
-    var_dump(
+    // var_dump(
         $xml=  $service->incluiOuAlteraReserva(
             '1234',
             $requestorId,
@@ -130,39 +130,54 @@ try {
             $email,
             $celular,
             $comentarios
-        )
         );
+    // );
+
+    $warning = $xml->Warnings->Warning;
+    $erro = $xml->Errors->Error;
+   
+    if($erro!="" || $warning!="") {
+        echo "<center><h1 style='margin-top: 30px;'>Não foi possível completar a operação</h1><br>O servidor encontrou o seguinte erro:<br>".$erro.$warning."</center>";
+        break;
+        $deuCerto = false;
+    } else {
+        $deuCerto = true;
+    }
 
 } catch (Exception $error) {
     echo $error;
+} catch (Error $error) {
+    echo $error;
 }
+
+if ($deuCerto) {
 ?>
 <div class="container" style="height: 620px;">
 
-                    <h2>04. RESUMO DA COMPRA</h2>
-                    <span>Veja as informações referentes à sua reserva e efetue a confirmação </p>
-                        <hr>
-                    <div class="row-fluid show-grid">
-                        <div class="span4"></div>
-                        <div class="span4"></div>
-                    </div>
-                    <div class="row-fluid show-grid">
-                        <div class="span4"></div>
-                        <div class="span8"><span><strong>Titular da reserva:</strong>&nbsp;<?php echo $nome; echo " "; echo $sobrenome; ?></span><p></p>
-                            <span>Data de chegada: <strong><?php echo $chegada ?> </strong></span>&nbsp;&nbsp;
-                            <span>Data de saída: <strong><?php echo $partida ?></strong></span>&nbsp;&nbsp;
-                                <p></p>
-                            <span>Telefone: <strong><?php echo $celular ?></strong></span>&nbsp;&nbsp;
-                            <span>Email: <strong><?php echo $email ?></strong></span>&nbsp;&nbsp;
-                                <p></p>
-                            <span>Total: <strong>R$ <?php echo $valorTotal ?></strong></span>&nbsp;&nbsp;
-                            <p></p>
-                            <span>Cartão: <strong><?php echo $bandeiraCartao ?></strong></span>&nbsp;&nbsp;
-                            <?php echo $numeroCartao ?></strong></span>&nbsp;&nbsp;
-                        </div>
-                    </div>
-
-
+    <h2>04. RESUMO DA COMPRA</h2>
+    <span>Veja as informações referentes à sua reserva e efetue a confirmação </p>
+        <hr>
+    <div class="row-fluid show-grid">
+        <div class="span4"></div>
+        <div class="span4"></div>
+    </div>
+    <div class="row-fluid show-grid">
+        <div class="span4"></div>
+        <div class="span8"><span><strong>Titular da reserva:</strong>&nbsp;<?php echo $nome; echo " "; echo $sobrenome; ?></span><p></p>
+            <span>Data de chegada: <strong><?php echo $chegada ?> </strong></span>&nbsp;&nbsp;
+            <span>Data de saída: <strong><?php echo $partida ?></strong></span>&nbsp;&nbsp;
+                <p></p>
+            <span>Telefone: <strong><?php echo $celular ?></strong></span>&nbsp;&nbsp;
+            <span>Email: <strong><?php echo $email ?></strong></span>&nbsp;&nbsp;
+                <p></p>
+            <span>Total: <strong>R$ <?php echo $valorTotal ?></strong></span>&nbsp;&nbsp;
+            <p></p>
+            <span>Cartão: <strong><?php echo $bandeiraCartao ?></strong></span>&nbsp;&nbsp;
+            <?php echo $numeroCartao ?></strong></span>&nbsp;&nbsp;
         </div>
+    </div>
+
+</div>
+<?php } ?>
 </body>
 </html>

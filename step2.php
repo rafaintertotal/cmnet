@@ -289,8 +289,8 @@ if ($isDisponivel) {
     <p class="nome"><input type="text" name="nomeCliente" placeholder="Nome"></p>
     <p class="sobrenome"><input type="text" name="sobrenomeCliente" placeholder="Sobrenome"></p>
     <p class="email"><input type="text" name="emailCliente" placeholder="E-mail"></p>
-    <p class="fone"><input type="text" name="ddiCliente" placeholder="DDI" size="1" maxlength="3" class="ddd">
-                    <input type="text" name="dddCliente" placeholder="DDD" size="1" maxlength="3"  class="ddd">
+    <p class="fone"><input type="text" name="ddiCliente" placeholder="DDI" size="1" maxlength="2" class="ddd">
+                    <input type="text" name="dddCliente" placeholder="DDD" size="1" maxlength="2"  class="ddd">
                     <input type="text" name="foneCliente" placeholder="Telefone" class="fone"></p>
     <p class="titulo-cartao">Dados do cartão</p>
     <div id="cartao" class="styled">

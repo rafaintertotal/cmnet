@@ -14,6 +14,12 @@
 
 <!-- This makes HTML5 elements work in IE 6-8 -->
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+<style type="text/css">
+@media only screen and (min-device-width: 600px) {
+body {height: 350px;}
+}
+</style>
 </head>
 <body>
 <?php
@@ -76,7 +82,7 @@ $codSegurancaCartao = $_POST["codSegurancaCartao"];
 
 $comentarios =$_POST["comentarios"];
 
-$temCrianca = $_POST["codSegurancaCartao"];
+$temCrianca = $_POST["temCrianca"];
 $idadeCrianca = $_POST["idadeCrianca"];
 $qtdHospedes = $_POST["qtdHospedes"];
 

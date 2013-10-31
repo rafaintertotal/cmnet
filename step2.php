@@ -36,13 +36,13 @@ function voltarPasso2(){
   document.getElementById("container-passo2").style.display="";
 }
 
-function submitForm() {
+// function submitForm() {
   // if () {
   //   document.getElementById("container-passo2").style.display="none";  
-    document.getElementById("form").submit();
+    // document.getElementById("form").submit();
   // }
   // else {document.getElementById("warning").style.display="";}
-}
+// }
 
 // function goBack() {
 //   alert("oioi");
@@ -112,6 +112,11 @@ if (isset($_GET['crianca'])) {
   $qtdHospedes = $adulto;
   $temCrianca = "false";
 }
+
+// $adulto = 2;
+// $qtdHospedes = 3;
+// $temCrianca = "true";
+// $hospedes = array(new GuestCount(2, ), new GuestCount(1, 8, 1));
 
 //-----------------------------------------------------------------------------------------------------
 //-----Definir timezone
@@ -271,10 +276,25 @@ if ($isDisponivel) {
 
 }
 </style>
+<script type="text/javascript">
+function submitFormFinal() {
+  if (document.getElementById("nomeCliente").value=="") {alert("Por favor, verifique o campo Nome"); return false;}
+  if (document.getElementById("sobrenomeCliente").value=="") {alert("Por favor, verifique o campo Sobrenome"); return false;}
+  if (document.getElementById("emailCliente").value=="") {alert("Por favor, verifique o campo E-mail"); return false;}
+  if (document.getElementById("ddiCliente").value=="") {alert("Por favor, verifique o campo DDI"); return false;}
+  if (document.getElementById("dddCliente").value=="") {alert("Por favor, verifique o campo DDD"); return false;}
+  if (document.getElementById("foneCliente").value=="") {alert("Por favor, verifique o campo Telefone"); return false;}
+  if (document.getElementById("numeroCartao").value=="") {alert("Por favor, verifique o campo Número do cartão"); return false;}
+  if (document.getElementById("nomeTitularCartao").value=="") {alert("Por favor, verifique o campo Nome do titular do cartão"); return false;}
+  if (document.getElementById("dtValidadeCartao").value=="") {alert("Por favor, verifique o campo Validade"); return false;}
+  if (document.getElementById("codSegurancaCartao").value=="") {alert("Por favor, verifique o campo Código de segurança"); return false;}
+  document.getElementById("formFinal").submit();
+}
+</script>
 
 <div id="container-passo3" style="display: none;">
   <div id="passo-titulo">02. Dados da reserva</div>
-  <form id="form" action="step3.php" method="post">
+  <form id="formFinal" action="step3.php" method="post">
     <!-- Passar valores do XML pelo formulário -->
     <input type="hidden" name="codHotel" value=<?php echo $codHotel ?> />
     <input type="hidden" name="partida" value=<?php echo $partida ?> />
@@ -286,12 +306,12 @@ if ($isDisponivel) {
     <input type="hidden" name="idadeCrianca" value=<?php echo $idadeCrianca ?> />
     <input type="hidden" name="qtdHospedes" value=<?php echo $qtdHospedes ?> />
     <!-- Capturar valores do usuário -->
-    <p class="nome"><input type="text" name="nomeCliente" placeholder="Nome"></p>
-    <p class="sobrenome"><input type="text" name="sobrenomeCliente" placeholder="Sobrenome"></p>
-    <p class="email"><input type="text" name="emailCliente" placeholder="E-mail"></p>
-    <p class="fone"><input type="text" name="ddiCliente" placeholder="DDI" size="1" maxlength="2" class="ddd">
-                    <input type="text" name="dddCliente" placeholder="DDD" size="1" maxlength="2"  class="ddd">
-                    <input type="text" name="foneCliente" placeholder="Telefone" class="fone"></p>
+    <p class="nome"><input type="text" name="nomeCliente" id="nomeCliente" placeholder="Nome"></p>
+    <p class="sobrenome"><input type="text" name="sobrenomeCliente" id="sobrenomeCliente" placeholder="Sobrenome"></p>
+    <p class="email"><input type="text" name="emailCliente" id="emailCliente" placeholder="E-mail"></p>
+    <p class="fone"><input type="text" name="ddiCliente" id="ddiCliente" placeholder="DDI" size="1" maxlength="2" class="ddd">
+                    <input type="text" name="dddCliente" id="dddCliente" placeholder="DDD" size="1" maxlength="2"  class="ddd">
+                    <input type="text" name="foneCliente" id="foneCliente" placeholder="Telefone" class="fone"></p>
     <p class="titulo-cartao">Dados do cartão</p>
     <div id="cartao" class="styled">
       <select name="bandeiraCartao" id="bandeiraCartao" class="span3">
@@ -299,16 +319,16 @@ if ($isDisponivel) {
         <option value="MC">Master</option>
       </select>
     </div>
-    <p class="numero"><input type="text" name="numeroCartao" placeholder="Número"></p>
-    <p class="titular"><input type="text" name="nomeTitularCartao" placeholder="Nome do titular como está no cartão"></p>
-    <p class="validade"><input type="text" name="dtValidadeCartao" placeholder="Validade"></p>
-    <p class="codigo"><input type="text" name="codSegurancaCartao" placeholder="Código de segurança"></p>
+    <p class="numero"><input type="text" name="numeroCartao" id="numeroCartao" placeholder="Número"></p>
+    <p class="titular"><input type="text" name="nomeTitularCartao" id="nomeTitularCartao" placeholder="Nome do titular como está no cartão"></p>
+    <p class="validade"><input type="text" name="dtValidadeCartao" id="dtValidadeCartao" placeholder="Validade"></p>
+    <p class="codigo"><input type="text" name="codSegurancaCartao" id="codSegurancaCartao" placeholder="Código de segurança"></p>
     <p>
       <textarea name="politica_restricoes" rows="10" readonly="readonly"><?php include 'politica-citi-hoteis.html'; ?></textarea>
     </p>
     <div id="container-botoes">
       <div id="anterior"><a href="#" class="btn" onclick="voltarPasso2();">Voltar</a></div>
-      <div id="finalizar"><a href="#" class="btn btn-success" onclick="submitForm()">Confirmar</a></div>
+      <div id="finalizar"><a href="#" class="btn btn-success" onclick="submitFormFinal();">Confirmar</a></div>
     </div>
   </form>
 </div>

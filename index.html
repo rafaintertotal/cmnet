@@ -18,17 +18,17 @@
 function temCrianca() {
   if (document.getElementById("crianca").checked) {
     document.getElementById("idadeCrianca").disabled=false;
-    document.getElementById("qtdAdultos").value="1";
-    document.getElementById("qtdAdultos").disabled=true;
+    // document.getElementById("qtdAdultos").value="1";
+    // document.getElementById("qtdAdultos").disabled=true;
   } else {
     document.getElementById("idadeCrianca").disabled=true;
-    document.getElementById("qtdAdultos").disabled=false;
+    // document.getElementById("qtdAdultos").disabled=false;
     document.getElementById("idadeCrianca").value="0";
   }
 }
 
-function doisAdultos() {
-  if (document.getElementById("qtdAdultos").value > 1) {
+function tresAdultos() {
+  if (document.getElementById("qtdAdultos").value > 2) {
   	document.getElementById("crianca").checked = false;
     document.getElementById("crianca").disabled=true;
     document.getElementById("sim").style.color="#999";
@@ -71,9 +71,10 @@ function submitForm() {
 	<br>
 	<h2>Adultos:</h2>
 	<div class="styled">
-		<select id="qtdAdultos" name="qtdAdultos" onChange="doisAdultos()">
+		<select id="qtdAdultos" name="qtdAdultos" onChange="tresAdultos()">
 			<option selected="selected" value="1">1</option>
 			<option value="2">2</option>
+			<option value="3">3</option>
 		</select>
 	</div>
 	<br>
@@ -97,10 +98,6 @@ function submitForm() {
 			<option value="10">10</option>
 			<option value="11">11</option>
 			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-			<option value="16">16</option>
 		</select>
 	</div>
 	<br>

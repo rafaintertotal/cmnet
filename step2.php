@@ -98,14 +98,15 @@ $partida =data($_GET["partida"]);
 
 $adulto = (int)$_GET["qtdAdultos"];
 $idadeCrianca = (int)$_GET["idadeCrianca"];
+$adulto = 3;
 
 //-----------------------------------------------------------------------------------------------------
 //-----Verificar se há criança
 //-----------------------------------------------------------------------------------------------------
 
 if (isset($_GET['crianca'])) {
-  $hospedes = array(new GuestCount(1), new GuestCount(1, 8, $idadeCrianca));
-  $qtdHospedes = 2;
+  $hospedes = array(new GuestCount($adulto), new GuestCount(1, 8, $idadeCrianca));
+  $qtdHospedes = $adulto + 1;
   $temCrianca = "true";
 } else {
   $hospedes = array(new GuestCount($adulto));
